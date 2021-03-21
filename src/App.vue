@@ -12,16 +12,14 @@
           :default-selected-keys="['2']"
           :style="{ lineHeight: '64px' }"
         >
-          <a-menu-item key="1">
-            nav 1
-          </a-menu-item>
-          <a-menu-item key="2">
-            nav 2
-          </a-menu-item>
-          <a-menu-item key="3">
-            nav 3
+          <a-menu-item v-for="num in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]" :key="num">
+            {{num}}
           </a-menu-item>
         </a-menu>
+
+        <div class="avatar">
+          <a-avatar style="backgroundColor:#87d068" icon="user" />
+        </div>
       </a-layout-header>
       <a-layout-content style="padding: 0 50px">
         <a-breadcrumb style="margin: 16px 0">
@@ -46,5 +44,8 @@
   background: rgba(255, 255, 255, 0.2);
   margin: 16px 24px 16px 0;
   float: left;
+}
+#layout-content .avatar {
+  float: right;
 }
 </style>

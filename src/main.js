@@ -8,15 +8,22 @@ import Antd from 'ant-design-vue';
 import { message } from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import store from "./store";
+import blackList from './router/blackList'
 
+Vue.use(VueCookies);
 Vue.use(Antd);
 Vue.config.productionTip = false
 
 Vue.prototype.$message = message;
-Vue.prototype.$cookies = VueCookies;
 
 // 路由跳转钩子
 router.beforeEach((to, from, next) => {
+  // 黑名单则需要鉴权
+  if (blackList.indexOf(to.path) >= 0 && store.state.hasUrls.indexOf(to.path) < 0) {
+    next(`/unauthorized?redirect=${encodeURIComponent(window.location.origin + to.path)}`);
+    return;
+  }
+  // 鉴权通过
   next();
 });
 

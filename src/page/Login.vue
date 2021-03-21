@@ -30,6 +30,7 @@
 <script>
 import { login } from './api';
 import base64 from "../utils/base64";
+import { mapMutations } from 'vuex';
 
 export default {
   data () {
@@ -39,7 +40,11 @@ export default {
       redirect: undefined,
     };
   },
+  mounted() {
+    this.redirect = this.$route.query.redirect;
+  },
   methods: {
+    ...mapMutations(['loginState']),
     login() {
       this.form.validateFields((err, values) => {
         if (!err) {
@@ -47,7 +52,15 @@ export default {
           console.log(values);
           login(values).then(res => {
             if (res.success) {
-              this.$message.success('登录成功！')
+              this.$message.success('登录成功！');
+              this.loginState(res.data);
+              if (this.redirect) {
+                let ori = window.location.origin;
+                let redirect = this.redirect.replace(ori, '');
+                this.$router.push(redirect);
+              } else {
+                this.$router.push('/');
+              }
             } else {
               this.$message.error(res.message);
             }
