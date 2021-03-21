@@ -1,8 +1,24 @@
 'use strict'
-// Template version: 1.3.1
-// see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
+const path = require('path');
+
+// 所有可用的后端地址
+const proxy = {
+  online: {
+    host: '47.111.92.149',
+    port: 8080,
+    secure: false,
+    changeOrigin: true,
+  },
+  localhost: {
+    host: 'localhost',
+    port: 8080,
+    secure: false,
+    changeOrigin: false,
+  },
+};
+// 配置当前调试的后端地址
+const currentProxy = proxy.localhost;
 
 module.exports = {
   dev: {
@@ -10,7 +26,13 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api/y3h2': {
+        target: `http://${currentProxy.host}:${currentProxy.port}`, // 你接口的域名
+        secure: currentProxy.secure, // 如果是https接口，需要配置这个参数为true
+        changeOrigin: currentProxy.changeOrigin, // 如果接口跨域，需要配置这个参数为true
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,7 +42,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
