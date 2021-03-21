@@ -18,4 +18,14 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Deploy
+
+``` html
+# step 1
+npm run build
+
+# step 2
+配置dockerfile启动项，运行
+```
+
+![ava](img.png)
