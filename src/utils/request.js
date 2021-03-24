@@ -1,9 +1,6 @@
 import axios from 'axios';
 import router from '@/router';
-// import store from "src/common/store";
-// import {toLogin} from "src/utils";
-// import {interceptorWhiteList} from "src/config";
-// import {initData, refreshToken} from "src/pages/init";
+axios.defaults.baseURL = 'http://47.111.92.149:8080/';
 
 const instance = axios.create({
   validateStatus(status) {

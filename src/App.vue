@@ -12,7 +12,7 @@
           :default-selected-keys="['2']"
           :style="{ lineHeight: '64px' }"
         >
-          <a-menu-item v-for="num in [1,2,3,4,5,6,7,8,9,10]" :key="num">
+          <a-menu-item v-for="num in [1,2,3]" :key="num">
             {{num}}
           </a-menu-item>
         </a-menu>

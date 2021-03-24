@@ -1,0 +1,8 @@
+version: '2'
+services:
+  front:
+    image: 3y2h-front:latest
+    ports:
+      - "80:80"
+    volumes:
+    - /root/3y2h-front/nginx:/etc/nginx
